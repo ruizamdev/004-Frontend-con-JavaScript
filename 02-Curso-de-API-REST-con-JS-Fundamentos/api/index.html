@@ -5,39 +5,95 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>API REST Consuming</title>
   <style>
-    img {
-      width: 150px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      font-size: 62.5%;
+      margin: 50px;    
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 100vh;      
+      font-family: 'Roboto Flex', sans-serif;
+      font-size: 1.6rem;
+      background-color: rgb(212, 223, 226);
+    }
+    h1 {
+      font-size: 3rem;
+    }
+    #random-michis-btn {
+      width: 300px;
+      height: 50px;
+      font-size: 2rem;
+      border: 0;
+      border-radius: 50px;
+      color: white;
+      background-color: rgb(2, 87, 110);
+      box-shadow: 1px 1px 1.5px 1px rgb(0, 0, 0, 0.25),
+      -1px 0 3px 1px rgb(0, 0, 0, 0.25);
+    }
+    #random-michis-btn:hover {
+      cursor: pointer;
+    }
+    #random-michis {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      width: 40%;
+    }
+    .img-container {
+      position: relative;
+      width: 15%;
+      min-width: 200px;
+    }
+
+    .img-container img {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 1px 1px 1.5px 1px rgb(0, 0, 0, 0.25),
+      -1px 0 3px 1px rgb(0, 0, 0, 0.25);
+    }
+    .fav-btn {
+      position: absolute;
+      top: 10px;
+      left: 162px;
+      width: 30px;
+      height: 30px;
+      padding: 5px;
+      background-color: rgb(0,0,0,0.35);
+      border-radius: 50%;
+    }
+    .fav-btn:hover {
+      background-color: rgb(0,0,0,0.55);
+    }
+    .favbtn svg {
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
 
-  <h1>Rando-Michi'o'Matic</h1>
+  <h1>RandoMichis</h1>
 
   <span id="error"></span>
-
+  <button id="random-michis-btn" onclick="loadRandomMichis()">Click for random michis</button>
   <section id="random-michis">
-
-    <h2>Get Random Michis!</h2>
-
-    <article class="img-container">
-      <img id="img1" alt="Foto de gatitos aleatorios">
-      <button onclick="saveFavoriteMichis()">Save to favorites</button>
-    </article>
-    <article class="img-container">
-      <img id="img2" alt="Foto de gatitos aleatorios">
-      <button onclick="saveFavoriteMichis()">Save to favorites</button>
-    </article>
-
-    <button onclick="loadRandomMichis()">Random Cat!</button>
 
   </section>
   
 
   <section id="favorites-michis">
-
-    <h2>Favorites Michis</h2>
-    
   
   </section>
 

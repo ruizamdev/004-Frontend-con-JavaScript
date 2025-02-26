@@ -23,10 +23,6 @@ La estructura HTML es la siguiente:
       <img id="img2" alt="Foto de gatitos aleatorios">
       <button>Save to favorites</button>
     </article>
-    <article class="img-container">
-      <img id="img3" alt="Foto de gatitos aleatorios">
-      <button>Save to favorites</button>
-    </article>
     <button onclick="reload()">Random Cat!</button>
 
   </section>
@@ -149,5 +145,7 @@ async function saveFavoriteMichis() {
 ```
 
 ## Consultando a la API para escribir HTML dinámico
+
+
 
 ## DELETE: Borrando michis favoritos
