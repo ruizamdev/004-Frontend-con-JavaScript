@@ -161,5 +161,9 @@ async function removeFavoriteMichi (id) {
   }
 }
 
+async function uploadMichiPhoto() {
+  const form = new FormData()
+}
+
 loadRandomMichis();
 loadFavoritesMichis();
