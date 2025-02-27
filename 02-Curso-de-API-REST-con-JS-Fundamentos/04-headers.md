@@ -86,3 +86,4 @@ Existen muchos tipos de _content-type_:
 
 
 ## FormData: Publicando imágenes de michis
+
