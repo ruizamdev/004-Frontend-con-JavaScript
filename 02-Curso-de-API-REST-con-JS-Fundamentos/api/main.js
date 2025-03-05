@@ -1,6 +1,12 @@
+const api = axios.create({
+  baseURL: 'https://api.thecatapi.com/v1',
+})
+api.defaults.headers.common['X-API-KEY'] = 'live_Db80T6nPnXwGk6WSkG9UN7ZSQsJNVWCsPMIHWUQfCiwG6wbGEMv13LoyqqVyP4cs'
+
 const API_URL_RANDOM = 'https://api.thecatapi.com/v1/images/search?limit=9';
 const API_URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites';
-const API_URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?limit=2`;
+const API_URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`;
+const API_URL_UPLOAD = 'https://api.thecatapi.com/v1/images/upload';
 const spanError = document.getElementById('error');
 const favoritesMichis = document.getElementById('favorites-michis');
 const randomMichis = document.getElementById('random-michis');
@@ -84,10 +90,6 @@ async function loadFavoritesMichis () {
       throw new Error(`HTTP error! status: ${res.status} : ${data.message}`)
     } else {
       favoritesMichis.innerHTML = '';
-      const h2 = document.createElement('h2');
-      const h2Text = document.createTextNode('Michis Favoritos');
-      h2.appendChild(h2Text);
-      favoritesMichis.appendChild(h2);
       data.forEach(michi => {
         const article = document.createElement('article');
         article.classList.add('img-container');
@@ -113,7 +115,12 @@ async function loadFavoritesMichis () {
 
 async function saveFavoriteMichi (id) {
   try {
-    const res = await fetch(API_URL_FAVORITES, {
+
+    const {data, status} = await api.post('/favourites', {
+      image_id: id,
+    });
+
+    /* const res = await fetch(API_URL_FAVORITES, {
       method: 'POST',
       headers: {
         'X-API-KEY': 'live_Db80T6nPnXwGk6WSkG9UN7ZSQsJNVWCsPMIHWUQfCiwG6wbGEMv13LoyqqVyP4cs',
@@ -123,12 +130,12 @@ async function saveFavoriteMichi (id) {
         image_id: id,
       }),
     });
-    const data = await res.json();
+    const data = await res.json(); */
+
     console.log('Guardado')
-    console.log(res);
-  
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status} : ${data.message}`);
+
+    if (status !== 200) {
+      throw new Error(`HTTP error! status: ${status} : ${data.message}`);
     } else {
       console.log('Michi guardado en favoritos');
       loadFavoritesMichis();
@@ -159,6 +166,37 @@ async function removeFavoriteMichi (id) {
     spanError.innerHTML = `Hubo un error: ${error.message}`;
     console.error('Error:', error);
   }
+}
+
+async function uploadMichiPhoto() {
+  const form = document.getElementById('uploadingForm');
+  const formData =  new FormData(form);
+  console.log(formData);
+  console.log(formData.get('file'));
+  try {
+    const response = await fetch(API_URL_UPLOAD, {
+      method: 'POST',
+      headers: {
+        // 'Content-Type': 'multipart/form-data',
+        'X-API-KEY': 'live_Db80T6nPnXwGk6WSkG9UN7ZSQsJNVWCsPMIHWUQfCiwG6wbGEMv13LoyqqVyP4cs'
+      },
+      body: formData,
+    })
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status} : ${data.message}`)
+    } else {
+      console.log('Foto de michi subida!');
+      console.log({data});
+      console.log(data.url);
+      saveFavoriteMichi(data.id);
+    }
+  } catch (error) {
+    spanError.innerHTML = `Hubo un error: ${error.message}`;
+    console.error('Error:', error);
+  }
+  
 }
 
 loadRandomMichis();
