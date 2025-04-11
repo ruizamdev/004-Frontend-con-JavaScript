@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Elements styles</title>
+</head>
+<body>
+
+  <section>
+    <h1>pseudo-clase :host</h1>
+    <custom-element>
+      <span slot="titulo">Hola Mundo!</span>
+      <span slot="parrafo">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ad eum optio blanditiis debitis eius aut animi aperiam repellendus ullam asperiores, natus, error, sapiente officiis ipsa quidem officia possimus. Neque?</span>
+    </custom-element>
+  
+    <custom-element class="red">
+      <span slot="titulo">Programando con JavaScript!</span>
+      <span slot="parrafo">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ad eum optio blanditiis debitis eius aut animi aperiam repellendus ullam asperiores, natus, error, sapiente officiis ipsa quidem officia possimus. Neque?</span>
+    </custom-element>
+    
+    <custom-element yellow>
+      <span slot="titulo">Adios Mundo!</span>
+      <span slot="parrafo">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ad eum optio blanditiis debitis eius aut animi aperiam repellendus ullam asperiores, natus, error, sapiente officiis ipsa quidem officia possimus. Neque?</span>
+    </custom-element>
+    <article class="card">
+      <custom-element yellow>
+        <span slot="titulo">Otro componente</span>
+        <span slot="parrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat labore corrupti sapiente aliquam dolore consequatur voluptatum possimus quidem, dignissimos nam nulla vitae in. Quisquam, dolor. Laudantium porro ipsam animi impedit.</span>
+      </custom-element>
+    </article>
+  </section>
+
+  <section>
+    <h1>pseudo-elemento ::slotted</h1>
+    <custom-element>
+      <span slot="titulo">Hola Mundo!</span>
+      <span class="text" slot="parrafo">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate ad eum optio blanditiis debitis eius aut animi aperiam repellendus ullam asperiores, natus, error, sapiente officiis ipsa quidem officia possimus. Neque?</span>
+    </custom-element>
+  </section>
+
+
+  <script src="./customElement.js"></script>
+</body>
+</html>
